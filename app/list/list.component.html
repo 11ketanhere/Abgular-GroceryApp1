@@ -1,0 +1,66 @@
+<div class="card mb-2">
+  <h2 class="card-header text-center bg-warning fs-1 bg-gradient">Grocary</h2>
+</div>
+<div class="card mb-2">
+  <h2 class="card-header text-white bg-primary">Add Grocary</h2>
+</div>
+<div class="card mb-2">
+  <div class="card-body bg-info">
+    <form [formGroup]="userForm">
+      <div class="row text-center">
+        <div class="form-group col-3">
+          <h5><label class="mb-2">Item Name</label></h5>
+          <input type="text" class="form-control" formControlName="itemName">
+        </div>
+        <div class="form-group col-4">
+          <h5><label class="mb-2">Quantity</label></h5>
+          <input type="number" class="form-control" formControlName="quantity">
+        </div>
+        <div class="form-group col-4">
+          <h5><label class="mb-2">Image URL</label></h5> 
+          <input type="url" class="form-control" formControlName="imageUrl">
+        </div>
+        <div class="form-group col-1">
+          <button type="submit" class="btn btn-success" [disabled]="userForm.invalid" (click)="addItem()">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="card mb-2">
+  <h2 class="card-header text-white bg-primary">List</h2>
+</div>
+<div class="bg-info">
+  <table class="table  text-center">
+    <thead class=" ">
+      <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Image URL</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody class="table bg-warning ">
+
+      <tr *ngFor="let item of listData">
+        <td><span>{{item.itemName}}</span></td>
+        <td><span>{{item.quantity}}</span></td>
+        <td><span>{{item.imageUrl}}</span></td>
+        <td>
+          <div><button for="button" (click)="deleteItem(item)">Delete</button>
+            <nav>
+              <!-- <a routerLink="/view" routerLinkActive="active">view</a> -->
+              <button routerLink="/view" (click)="view(item)" routerLinkActive="active">view</button>
+            </nav>
+          </div>
+        </td>
+
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<router-outlet></router-outlet>
